@@ -1,0 +1,6 @@
+Arduino v1.6.4
+Arduino Nano
+ATmega328
+
+A1 = DHT11 sensor01
+A2 = DHT11 sensor02

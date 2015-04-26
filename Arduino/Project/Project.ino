@@ -1,6 +1,6 @@
 #include <dht.h>
-#define sensor01 A0 //DHT sensor 01 pin number
-#define sensor02 A1 //DHT sensor 02 pin number
+#define sensor01 A1 //DHT sensor 01 pin number
+#define sensor02 A2 //DHT sensor 02 pin number
 int bootDelay = 1000; //Time of boot to let sensors initialize (miliseconds)
 dht DHT;
 
@@ -31,11 +31,11 @@ void boot(){
 void printDHTInfo(int pin){
   DHT.read11(pin);
   int sensorNumber;
-  if (pin == A0){
-    sensorNumber = 0;
-  }
   if (pin == A1){
     sensorNumber = 1;
+  }
+  if (pin == A2){
+    sensorNumber = 2;
   }
   Serial.print("Temperature  on sensor ");
   Serial.print(sensorNumber);
