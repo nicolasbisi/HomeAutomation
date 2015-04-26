@@ -12,7 +12,7 @@ dht DHT;
 //Network
 EthernetServer server = EthernetServer(80);
 byte mac[6] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED}; //Dont forget to change if necessary!
-IPAddress myIP(192,168,1,43); //Dont forget to change if necessary!
+IPAddress myIP(192,168,1,22); //Dont forget to change if necessary!
 
 
 
@@ -43,12 +43,11 @@ void loop(){
                 if(c != '/'){input = input+c;}
               }while (c != '/'); //URL must end in /
               if (input == "sensor01"){
-                printDHTInfo(sensor01);
+                client.print(returnDHTInfo(sensor01));
               }
               if (input == "sensor02"){
-                printDHTInfo(sensor02);
+                client.print(returnDHTInfo(sensor02));
               }
-              client.print(input); //print request
             }
           }
         }
@@ -70,6 +69,19 @@ void boot(){
   Serial.println("100|");
   Serial.println("Boot Completed!");
 }
+
+String returnDHTInfo(int pin){
+  DHT.read11(pin);
+  int sensorNumber;
+  if (pin == A1){
+    sensorNumber = 1;
+  }
+  if (pin == A2){
+    sensorNumber = 2;
+  }
+  return ("sensor0" + String(sensorNumber) + "/T" + String((int) DHT.temperature) 
+                                           + "/H" + String((int) DHT.humidity));
+} 
 
 void printDHTInfo(int pin){
   DHT.read11(pin);

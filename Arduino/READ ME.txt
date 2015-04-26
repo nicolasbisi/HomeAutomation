@@ -7,5 +7,5 @@ A2 = DHT11 - sensor02
 
 
 URL commands:
-ip/sensor01/
-ip/sensor02/
+ip/sensor01/ -> return sensor01/Txx/Hxx/
+ip/sensor02/ -> return sensor02/Txx/Hxx/
